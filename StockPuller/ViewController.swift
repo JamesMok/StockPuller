@@ -17,7 +17,7 @@ struct Quote: Decodable {
     let delayedPriceTime: Decimal
     let processedTime: Decimal
     
-    init(json: [String: Any]) {
+    /*init(json: [String: Any]) {
         symbol = json["symbol"] as? String ?? "Unknown"
         delayedPrice = json["delayedPrice"] as? Decimal ?? 00.00
         high = json["high"] as? Decimal ?? 00.00
@@ -25,7 +25,8 @@ struct Quote: Decodable {
         delayedSize = json["delayedSize"] as? Int ?? 200
         delayedPriceTime = json["delayedPriceTime"] as? Decimal ?? 00.00
         processedTime = json["processedTime"] as? Decimal ?? 00.00
-    }
+
+    } */
 }
 
 class ViewController: UIViewController {
@@ -65,7 +66,6 @@ class ViewController: UIViewController {
             do {
                 let quote = try JSONDecoder().decode(Quote.self, from: data)
                 print(quote.delayedPrice)
-                //self.stockInfoLbl.text = String(describing: quote.delayedPrice)
                 DispatchQueue.main.async {
                     self.stockInfoLbl.text = "$" + String(describing: quote.delayedPrice)
                     self.stockNameLbl.text = quote.symbol
